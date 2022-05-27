@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.laundryapp" >
+    package="com.example.laundryapp">
 
     <application
         android:allowBackup="true"
@@ -8,18 +8,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LaundryApp" >
+        android:theme="@style/Theme.LaundryApp">
         <activity
-            android:name=".Splashscreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+            android:name=".customer_dashboard"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity">
-        </activity>
+            android:name=".admin_dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".UsrRegister"
+            android:exported="false" />
+        <activity
+            android:name=".UsrLogin"
+            android:exported="false" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

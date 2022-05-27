@@ -8,4 +8,12 @@
     <color name="purple">#ba53de</color>
     <color name="pink">#f469a9</color>
     <color name="blue">#88bef5</color>
+    <color name="darkBlue">#122a78</color>
+    <color name="brown">#994a29</color>
+    <color name="gray">#808080</color>
+    <color name="red">#ff0006</color>
+    <color name="redPlum">#db5a6b</color>
+    <color name="darkLime">#8bbe1b</color>
+    <color name="darkBrown">#70280f</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

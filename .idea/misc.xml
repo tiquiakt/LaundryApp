@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.231" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/drawable/ic_message.xml" value="0.106" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/font/diplomata.xml" value="0.19722222222222222" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.15555555555555556" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_customer_dashboard.xml" value="0.15555555555555556" />
@@ -11,14 +12,15 @@
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_splashscreen.xml" value="0.1" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_usr_login.xml" value="0.25" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_usr_register.xml" value="0.25" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/drawer_layout.xml" value="0.1" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/logintab.xml" value="0.1" />
-        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/navigation_header.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/navigation_header.xml" value="0.1" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/registertab.xml" value="0.22" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/regtab.xml" value="1.25" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/screen_onboaarding2.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/screen_onboarding1.xml" value="0.1544943820224719" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/splashscreenn_activity" value="0.25" />
-        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/menu/customer_drawer_menu.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/menu/customer_drawer_menu.xml" value="0.25" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.231" />
       </map>
     </option>

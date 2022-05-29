@@ -72,6 +72,7 @@ public class UsrRegister extends AppCompatActivity {
                             userInfo.put("Full Name", regName.getText().toString());
                             userInfo.put("Phone No.", regContact.getText().toString());
                             userInfo.put("Email", usrEmail.getText().toString());
+                            userInfo.put("Password",regPss.getText().toString());
                             userInfo.put("isCustomer", "1");
                             docRef.set(userInfo);
 

@@ -68,8 +68,13 @@ public class UsrLogin extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Toast.makeText(UsrLogin.this,"Login Success", Toast.LENGTH_SHORT).show();
-                            checkUserLevel(authResult.getUser().getUid());
-
+                            boolean field;
+                            if (field = true) {
+                                isAdmin(authResult.getUser().getUid());
+                            }
+                            else {
+                                isCustomer(authResult.getUser().getUid());
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -88,20 +93,30 @@ public class UsrLogin extends AppCompatActivity {
             }
         });
     }
-
-    private void checkUserLevel(String uid) {
-        DocumentReference docRef = fbStore.collection("Customers").document(uid);
+    private void isAdmin(String uid) {
+        DocumentReference docRef = fbStore.collection("Admin").document(uid);
         // take the data from document
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Log.d("TAG","onSuccess" + documentSnapshot.getData());
-                // check user if admin or customer
+                // check user if admin
 
                 if (documentSnapshot.getString("isAdmin") != null){
                     startActivity(new Intent(getApplicationContext(),admin_dashboard.class));
                     finish();
                 }
+            }
+        });
+    }
+    private void isCustomer(String uid) {
+        DocumentReference docRef = fbStore.collection("customers").document(uid);
+        // take the data from document
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess" + documentSnapshot.getData());
+                // check user if customer
                 if (documentSnapshot.getString("isCustomer") != null){
                     startActivity(new Intent(getApplicationContext(),customer_dashboard.class));
                     finish();
@@ -109,6 +124,7 @@ public class UsrLogin extends AppCompatActivity {
             }
         });
     }
+
 
     private boolean checkField(@NonNull EditText textField) {
         if (textField.getText().toString().isEmpty()) {

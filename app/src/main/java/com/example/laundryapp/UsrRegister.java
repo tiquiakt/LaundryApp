@@ -13,11 +13,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.core.DatabaseInfo;
+import com.google.firebase.firestore.model.DatabaseId;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,12 +67,12 @@ public class UsrRegister extends AppCompatActivity {
                         public void onSuccess(AuthResult authResult) {
                             Toast.makeText(UsrRegister.this,"Account Created",Toast.LENGTH_SHORT).show();
                             FirebaseUser user = fbAuth.getCurrentUser();
-                            DocumentReference docRef = fbStore.collection("Customers").document(user.getUid());
+                            DocumentReference docRef = fbStore.collection("customers").document(user.getUid());
                             Map<String,Object> userInfo = new HashMap();
                             userInfo.put("Full Name", regName.getText().toString());
                             userInfo.put("Phone No.", regContact.getText().toString());
                             userInfo.put("Email", usrEmail.getText().toString());
-                            userInfo.put("isCustomer", "0");
+                            userInfo.put("isCustomer", "1");
                             docRef.set(userInfo);
 
                             startActivity(new Intent(getApplicationContext(),customer_dashboard.class));

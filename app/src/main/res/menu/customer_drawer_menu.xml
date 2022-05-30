@@ -17,7 +17,7 @@
             android:icon="@drawable/ic_settings"/>
     </group>
 
-    <item android:title="communicate">
+    <item android:title="Communicate">
         <menu>
             <item android:id="@+id/share"
                 android:title="Share"

@@ -17,9 +17,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class UsrLogin extends AppCompatActivity {
 
@@ -27,7 +30,7 @@ public class UsrLogin extends AppCompatActivity {
     Button btnLogin, btnGuest;
     ShapeableImageView fb, google, twitter;
     TextView frgtpass,  rgstrAccount;
-    boolean valid = true;
+    boolean valid, usrAdmin = true;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
 
@@ -68,13 +71,13 @@ public class UsrLogin extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Toast.makeText(UsrLogin.this,"Login Success", Toast.LENGTH_SHORT).show();
-                            boolean field;
-                            if (field = true) {
-                                isAdmin(authResult.getUser().getUid());
-                            }
-                            else {
-                                isCustomer(authResult.getUser().getUid());
-                            }
+                           if (usrAdmin){
+                               isAdmin(authResult.getUser().getUid());
+                           }
+                           else {
+                               isCustomer(authResult.getUser().getUid());
+                           }
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -100,13 +103,16 @@ public class UsrLogin extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Log.d("TAG","onSuccess" + documentSnapshot.getData());
-                // check user if admin
+                // check user if admin or customer
 
                 if (documentSnapshot.getString("isAdmin") != null){
                     startActivity(new Intent(getApplicationContext(),admin_dashboard.class));
                     finish();
                 }
-            }
+                else{
+                    isCustomer(fbAuth.getUid());
+                }
+                }
         });
     }
     private void isCustomer(String uid) {

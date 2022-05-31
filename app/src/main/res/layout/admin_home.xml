@@ -7,7 +7,7 @@
     tools:context=".customer_dashboard">
 
     <TextView
-        android:id="@+id/customer"
+        android:id="@+id/admin"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:text="Hello, Admin!"
@@ -21,6 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         android:layout_marginRight="100dp"
-        android:layout_marginTop="80dp"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,10 +26,6 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
     DrawerLayout drawerLayout;
     TextView textView;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +46,18 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
-        textView = findViewById(R.id.customer);
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CustomHome()).commit();
-            navView.setCheckedItem(androidx.appcompat.R.id.home);
+            navView.setCheckedItem(R.id.customhome);
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.customhome:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CustomHome()).commit();
+                break;
             case R.id.profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfile()).commit();
                 break;
@@ -83,7 +80,6 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
                 break;
             case R.id.logout:
                 startActivity(new Intent(getApplicationContext(),UsrLogin.class));
-                finish();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

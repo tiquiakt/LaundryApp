@@ -1,8 +1,5 @@
 package com.example.laundryapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +8,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.core.DatabaseInfo;
-import com.google.firebase.firestore.model.DatabaseId;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -98,8 +99,12 @@ public class UsrRegister extends AppCompatActivity {
 
     public boolean checkField(EditText textField){
         if (textField.getText().toString().isEmpty()){
+            Toast.makeText(UsrRegister.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             textField.setError("Error");
             valid = false;
+        }
+        else if (!regPss.equals(regCnfrmPss)){
+            Toast.makeText(UsrRegister.this, "Password are not match", Toast.LENGTH_SHORT).show();
         }
         else{
             valid = true;

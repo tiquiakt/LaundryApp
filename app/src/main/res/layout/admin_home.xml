@@ -10,7 +10,7 @@
         android:id="@+id/customer"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:text="Welcome, dearest customer!"
+        android:text="Hello, Admin!"
         android:textColor="@color/black"
         android:textSize="35dp"
         android:gravity="center"

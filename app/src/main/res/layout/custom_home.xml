@@ -7,19 +7,40 @@
     tools:context=".customer_dashboard">
 
     <TextView
-        android:id="@+id/customer"
+        android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:text="Welcome, dearest customer!"
-        android:textColor="@color/black"
-        android:textSize="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="35dp"
+        android:fontFamily="sans-serif-black"
         android:gravity="center"
+        android:text="Welcome!"
+        android:textColor="@color/darkBlue"
+        android:textSize="40dp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0"
-        android:layout_marginRight="70dp"/>
+        app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="LOVE GETTING CLEAN CLOTHES IN AN INSTANT?"
+        android:textColor="@color/darkBlue"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWelcome"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

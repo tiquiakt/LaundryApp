@@ -35,6 +35,9 @@ public class UsrRegister extends AppCompatActivity {
     boolean valid = true;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
+    DatabaseReference dbRef;
+    FirebaseUser currentUser;
+    FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,30 +12,32 @@
         <item android:id="@+id/bookHistory"
         android:title="Booking History"
             android:icon="@drawable/ic_booking_history"/>
-        <item android:id="@+id/message"
-            android:title="Message"
-            android:icon="@drawable/ic_message"/>
         <item android:id="@+id/settings"
         android:title="Settings"
             android:icon="@drawable/ic_settings"/>
+        <item android:id="@+id/about"
+            android:title="About"
+            android:icon="@drawable/ic_about"/>
     </group>
 
     <item android:title="Communicate">
         <menu>
+            <item android:id="@+id/help"
+                android:title="Help"
+                android:icon="@drawable/ic_help"/>
             <item android:id="@+id/share"
                 android:title="Share"
                 android:icon="@drawable/ic_share"/>
-            <item android:id="@+id/send"
-                android:title="Send"
-                android:icon="@drawable/ic_send"/>
+            <item android:id="@+id/message"
+                android:title="Message"
+                android:icon="@drawable/ic_message"/>
         </menu>
     </item>
-
     <item android:title="">
         <menu>
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_logout"
+                android:icon="@drawable/ic_logout_"
                 android:title="Logout" />
         </menu>
     </item>

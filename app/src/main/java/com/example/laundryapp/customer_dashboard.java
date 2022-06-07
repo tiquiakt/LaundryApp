@@ -14,11 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class customer_dashboard<uid> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -66,6 +61,7 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
                 break;
             case R.id.message:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMessage()).commit();
+                Toast.makeText(this, "Send Message", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSettings()).commit();
@@ -74,9 +70,8 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentShare()).commit();
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.send:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSend()).commit();
-                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
+            case R.id.help:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHelp()).commit();
                 break;
             case R.id.logout:
                 startActivity(new Intent(getApplicationContext(),UsrLogin.class));

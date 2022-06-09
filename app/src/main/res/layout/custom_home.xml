@@ -72,50 +72,27 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/profile_fullname_text"
+            <EditText
+                android:id="@+id/editTextTextPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Full Name">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_face_24"
-                    android:drawablePadding="10dp"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/profile_email"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Full name" />
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Email">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_email_24"
-                    android:drawablePadding="10dp"
-                    android:inputType="textEmailAddress"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/profile_number"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Email" />
+            <EditText
+                android:id="@+id/editTextTextPersonName3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Phone Number">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_contact_phone_24"
-                    android:drawablePadding="10dp"
-                    android:inputType="phone"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Phone Number" />
 
             <Button
                 android:id="@+id/button3"

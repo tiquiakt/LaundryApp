@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class UsrRegister extends AppCompatActivity {
 
-    EditText regName, regContact, usrEmail, regPss, regCnfrmPss;
+    EditText regName, regContact, regAddress, usrEmail, regPss, regCnfrmPss;
     Button btnRegister;
     TextView lgnAccount;
     boolean valid = true;
@@ -49,6 +49,7 @@ public class UsrRegister extends AppCompatActivity {
 
         regName = findViewById(R.id.reg_fullname);
         regContact = findViewById(R.id.reg_phonenum);
+        regAddress = findViewById(R.id.reg_address);
         usrEmail = findViewById(R.id.reg_email);
         regPss = findViewById(R.id.reg_password);
         regCnfrmPss = findViewById(R.id.reg_cnfrm_psswrd);
@@ -60,6 +61,7 @@ public class UsrRegister extends AppCompatActivity {
             public void onClick(View view) {
                 checkField(regName);
                 checkField(regContact);
+                checkField(regAddress);
                 checkField(usrEmail);
                 checkField(regPss);
                 checkField(regCnfrmPss);
@@ -75,6 +77,7 @@ public class UsrRegister extends AppCompatActivity {
                             Map<String,Object> userInfo = new HashMap();
                             userInfo.put("Full Name", regName.getText().toString());
                             userInfo.put("Phone No.", regContact.getText().toString());
+                            userInfo.put("Address", regAddress.getText().toString());
                             userInfo.put("Email", usrEmail.getText().toString());
                             userInfo.put("Password",regPss.getText().toString());
                             userInfo.put("isCustomer", "1");

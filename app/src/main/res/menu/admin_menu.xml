@@ -19,10 +19,6 @@
             android:icon="@drawable/ic_sales"
             android:title="Sales" />
         <item
-            android:id="@+id/message"
-            android:icon="@drawable/ic_message"
-            android:title="Message" />
-        <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings" />
@@ -35,9 +31,9 @@
                 android:icon="@drawable/ic_share"
                 android:title="Share" />
             <item
-                android:id="@+id/send"
-                android:icon="@drawable/ic_send"
-                android:title="Send" />
+                android:id="@+id/message"
+                android:icon="@drawable/ic_message"
+                android:title="Message" />
         </menu>
     </item>
 
@@ -46,7 +42,7 @@
         <menu>
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_logout"
+                android:icon="@drawable/ic_logout_"
                 android:title="Logout" />
         </menu>
     </item>

@@ -69,6 +69,25 @@
             app:layout_constraintWidth_percent=".8"/>
 
         <EditText
+            android:id="@+id/reg_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_txt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reg_phonenum"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".8"/>
+
+        <EditText
             android:id="@+id/reg_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,7 +102,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reg_phonenum"
+            app:layout_constraintTop_toBottomOf="@+id/reg_address"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".8"/>
 
@@ -191,7 +210,7 @@
         android:id="@+id/txtLetter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:fontFamily="casual"

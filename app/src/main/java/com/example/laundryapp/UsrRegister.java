@@ -1,8 +1,5 @@
 package com.example.laundryapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,29 +8,36 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.core.DatabaseInfo;
-import com.google.firebase.firestore.model.DatabaseId;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class UsrRegister extends AppCompatActivity {
 
-    EditText regName, regContact, usrEmail, regPss, regCnfrmPss;
+    EditText regName, regContact, regAddress, usrEmail, regPss, regCnfrmPss;
     Button btnRegister;
     TextView lgnAccount;
     boolean valid = true;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
+    DatabaseReference dbRef;
+    FirebaseUser currentUser;
+    FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class UsrRegister extends AppCompatActivity {
 
         regName = findViewById(R.id.reg_fullname);
         regContact = findViewById(R.id.reg_phonenum);
+        regAddress = findViewById(R.id.reg_address);
         usrEmail = findViewById(R.id.reg_email);
         regPss = findViewById(R.id.reg_password);
         regCnfrmPss = findViewById(R.id.reg_cnfrm_psswrd);
@@ -56,6 +61,7 @@ public class UsrRegister extends AppCompatActivity {
             public void onClick(View view) {
                 checkField(regName);
                 checkField(regContact);
+                checkField(regAddress);
                 checkField(usrEmail);
                 checkField(regPss);
                 checkField(regCnfrmPss);
@@ -71,6 +77,7 @@ public class UsrRegister extends AppCompatActivity {
                             Map<String,Object> userInfo = new HashMap();
                             userInfo.put("Full Name", regName.getText().toString());
                             userInfo.put("Phone No.", regContact.getText().toString());
+                            userInfo.put("Address", regAddress.getText().toString());
                             userInfo.put("Email", usrEmail.getText().toString());
                             userInfo.put("Password",regPss.getText().toString());
                             userInfo.put("isCustomer", "1");
@@ -98,8 +105,12 @@ public class UsrRegister extends AppCompatActivity {
 
     public boolean checkField(EditText textField){
         if (textField.getText().toString().isEmpty()){
+            Toast.makeText(UsrRegister.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             textField.setError("Error");
             valid = false;
+        }
+        else if (!regPss.equals(regCnfrmPss)){
+            Toast.makeText(UsrRegister.this, "Password are not match", Toast.LENGTH_SHORT).show();
         }
         else{
             valid = true;

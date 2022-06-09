@@ -134,6 +134,7 @@ public class UsrLogin extends AppCompatActivity {
 
     private boolean checkField(@NonNull EditText textField) {
         if (textField.getText().toString().isEmpty()) {
+            Toast.makeText(UsrLogin.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             textField.setError("Error");
             valid = false;
         }else {

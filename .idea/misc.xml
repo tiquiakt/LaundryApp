@@ -6,14 +6,25 @@
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.231" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/drawable/ic_message.xml" value="0.106" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/font/diplomata.xml" value="0.19722222222222222" />
-        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.15555555555555556" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_customer_dashboard.xml" value="0.22" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_splashscreen.xml" value="0.1" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_usr_login.xml" value="0.25" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/activity_usr_register.xml" value="0.25" />
-        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/custom_home.xml" value="0.1" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/admin_home.xml" value="0.2359375" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/admin_navheader.xml" value="0.2359375" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/admin_option.xml" value="0.2359375" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/custom_home.xml" value="0.33" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/drawer_layout.xml" value="0.1" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_Send.xml" value="0.2323076923076923" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_booking_history.xml" value="0.2323076923076923" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_help.xml" value="0.2359375" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_message.xml" value="0.2323076923076923" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_profile.xml" value="0.2323076923076923" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_send.xml" value="0.2441025641025641" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_settings.xml" value="0.2323076923076923" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/fragment_share.xml" value="0.2323076923076923" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/logintab.xml" value="0.1" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/navigation_header.xml" value="0.18" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/option_layout.xml" value="0.1" />
@@ -22,6 +33,8 @@
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/screen_onboaarding2.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/screen_onboarding1.xml" value="0.1544943820224719" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/splashscreenn_activity" value="0.25" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/layout/user_register.xml" value="0.2359375" />
+        <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/menu/admin_menu.xml" value="0.2359375" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/menu/customer_drawer_menu.xml" value="0.25" />
         <entry key="..\:/Users/Mr.Bubbly/LaundryApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.231" />
         <entry key="..\:/Users/user/AndroidStudioProjects/LaundryApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.13496376811594202" />

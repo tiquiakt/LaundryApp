@@ -1,8 +1,13 @@
 package com.example.laundryapp;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,11 +21,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,15 +29,14 @@ import java.util.Map;
 
 public class UsrRegister extends AppCompatActivity {
 
-    EditText regName, regContact, regAddress, usrEmail, regPss, regCnfrmPss;
+    EditText regName, regUsrname, regContact, regAddress, usrEmail, regPss, regCnfrmPss;
     Button btnRegister;
     TextView lgnAccount;
     boolean valid = true;
+    boolean psswrdVisible;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
-    DatabaseReference dbRef;
-    FirebaseUser currentUser;
-    FirebaseDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +47,7 @@ public class UsrRegister extends AppCompatActivity {
         fbStore = FirebaseFirestore.getInstance();
 
         regName = findViewById(R.id.reg_fullname);
+        regUsrname = findViewById(R.id.reg_username);
         regContact = findViewById(R.id.reg_phonenum);
         regAddress = findViewById(R.id.reg_address);
         usrEmail = findViewById(R.id.reg_email);
@@ -56,10 +56,61 @@ public class UsrRegister extends AppCompatActivity {
         btnRegister = findViewById(R.id.bttnReg);
         lgnAccount = findViewById(R.id.rgstrdUsr);
 
+        regPss.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int reg_psswrd = 2;
+                if (motionEvent.getAction()==MotionEvent.ACTION_UP){
+                    if (motionEvent.getRawX()>=regPss.getRight()-regPss.getCompoundDrawables()[reg_psswrd].getBounds().width()){
+                        int selection = regPss.getSelectionEnd();
+                        if (psswrdVisible){
+                            regPss.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_visibility_off,0);
+                            regPss.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            psswrdVisible = false;
+                        }
+                        else {
+                            regPss.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_visibility_on,0);
+                            regPss.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            psswrdVisible = true;
+                        }
+                        regPss.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        regCnfrmPss.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int reg_Cnfrmpsswrd = 2;
+                if (motionEvent.getAction()==MotionEvent.ACTION_UP){
+                    if (motionEvent.getRawX()>=regCnfrmPss.getRight()-regCnfrmPss.getCompoundDrawables()[reg_Cnfrmpsswrd].getBounds().width()){
+                        int selection = regCnfrmPss.getSelectionEnd();
+                        if (psswrdVisible){
+                            regCnfrmPss.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_visibility_off,0);
+                            regCnfrmPss.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            psswrdVisible = false;
+                        }
+                        else {
+                            regCnfrmPss.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_visibility_on,0);
+                            regCnfrmPss.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            psswrdVisible = true;
+                        }
+                        regCnfrmPss.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkField(regName);
+                checkField(regUsrname);
                 checkField(regContact);
                 checkField(regAddress);
                 checkField(usrEmail);
@@ -71,11 +122,12 @@ public class UsrRegister extends AppCompatActivity {
                     fbAuth.createUserWithEmailAndPassword(usrEmail.getText().toString(),regPss.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(UsrRegister.this,"Account Created",Toast.LENGTH_SHORT).show();
                             FirebaseUser user = fbAuth.getCurrentUser();
-                            DocumentReference docRef = fbStore.collection("customers").document(user.getUid());
+                            Toast.makeText(UsrRegister.this,"Account Created",Toast.LENGTH_SHORT).show();
+                            DocumentReference docRef = fbStore.collection("Customers").document(user.getUid());
                             Map<String,Object> userInfo = new HashMap();
                             userInfo.put("Full Name", regName.getText().toString());
+                            userInfo.put("Username", regUsrname.getText().toString());
                             userInfo.put("Phone No.", regContact.getText().toString());
                             userInfo.put("Address", regAddress.getText().toString());
                             userInfo.put("Email", usrEmail.getText().toString());

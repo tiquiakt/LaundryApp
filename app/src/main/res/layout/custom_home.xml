@@ -23,7 +23,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/labapp_logo" />
+                android:src="@drawable/labapp_logo"/>
 
             <TextView
                 android:id="@+id/profile_fullname"
@@ -70,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="80dp"
             android:padding="20dp">
 
             <EditText
@@ -78,14 +79,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Full name" />
+                android:text="Email" />
             <EditText
                 android:id="@+id/editTextTextPersonName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Email" />
+                android:text="Address" />
             <EditText
                 android:id="@+id/editTextTextPersonName3"
                 android:layout_width="match_parent"

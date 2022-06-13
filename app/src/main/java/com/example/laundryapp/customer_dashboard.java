@@ -9,13 +9,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,23 +27,22 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import java.util.Calendar;
-
 import javax.xml.parsers.DocumentBuilder;
 
 public class customer_dashboard<uid> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-    Button bttnBook, bttnPurchase;
+
+    Button booking, purchase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_dashboard);
 
-        bttnBook = findViewById(R.id.button3);
-        bttnPurchase = findViewById(R.id.button4);
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         NavigationView navView = findViewById(R.id.navigation_view);
@@ -58,14 +55,9 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
+        booking = findViewById(R.id.button3);
+        purchase = findViewById(R.id.button4);
 
-        bttnBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),CustomerBooking.class));
-                finish();
-            }
-        });
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CustomHome()).commit();

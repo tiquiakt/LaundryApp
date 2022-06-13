@@ -21,4 +21,5 @@ public class CustomHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.custom_home, container, false);
     }
+
 }

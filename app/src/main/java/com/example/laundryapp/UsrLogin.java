@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +34,7 @@ public class UsrLogin extends AppCompatActivity {
     ShapeableImageView fb, google, twitter;
     TextView frgtpass,  rgstrAccount;
     boolean valid, usrAdmin = true;
+    boolean psswrdVisible;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
 
@@ -49,6 +53,31 @@ public class UsrLogin extends AppCompatActivity {
 
         fbAuth = FirebaseAuth.getInstance();
         fbStore = FirebaseFirestore.getInstance();
+
+        usrPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int usr_psswrd = 2;
+                if (motionEvent.getAction()==MotionEvent.ACTION_UP){
+                    if (motionEvent.getRawX()>=usrPassword.getRight()-usrPassword.getCompoundDrawables()[usr_psswrd].getBounds().width()){
+                        int selection = usrPassword.getSelectionEnd();
+                        if (psswrdVisible){
+                            usrPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_visibility_off,0);
+                            usrPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            psswrdVisible = false;
+                        }
+                        else {
+                            usrPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_visibility_on,0);
+                            usrPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            psswrdVisible = true;
+                        }
+                        usrPassword.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
 
         rgstrAccount.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +145,7 @@ public class UsrLogin extends AppCompatActivity {
         });
     }
     private void isCustomer(String uid) {
-        DocumentReference docRef = fbStore.collection("customers").document(uid);
+        DocumentReference docRef = fbStore.collection("Customers").document(uid);
         // take the data from document
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

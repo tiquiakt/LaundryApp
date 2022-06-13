@@ -15,6 +15,7 @@
         app:shapeAppearanceOverlay="@style/circular" />
 
     <TextView
+        android:id="@+id/admin_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
@@ -24,6 +25,7 @@
         android:textStyle="bold|italic" />
 
     <TextView
+        android:id="@+id/admin_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="labapp@info.com"

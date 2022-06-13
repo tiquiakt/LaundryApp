@@ -1,72 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".CustomerBooking">
 
-    <ImageView
-        android:id="@+id/profile_id"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/labapp_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/blue">
 
-    <EditText
-        android:id="@+id/editTxtFullname"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/custom_txt"
-        android:gravity="center"
-        android:hint="Full Name"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_id" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@drawable/splash_bg"
+            android:padding="20dp">
 
-    <EditText
-        android:id="@+id/datePicker"
-        style="?android:spinnerStyle"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:hint="Reserve Date"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:drawableRight="@drawable/ic_calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtFullname"
-        android:onClick="openDatePicker"/>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profile_id"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/labapp_logo"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="25dp"
+                app:shapeAppearanceOverlay="@style/circular"/>
 
-    <Button
-        android:id="@+id/bookbttn"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Book Now"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="35dp"/>
+            <TextView
+                android:id="@+id/profile_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_id"
+                android:layout_marginLeft="55dp"
+                android:fontFamily="@font/diplomata"
+                android:text="Reservation"
+                android:textColor="@color/darkBlue"
+                android:textSize="50dp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/homebttn"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="150dp"
-        android:text="Home"
-        app:layout_constraintStart_toEndOf="@+id/bookbttn"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtLetter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="casual"
+            android:text="Reservation time open from 9:00 a.m to 3:00 p.m"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtLetter2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="casual"
+            android:text="Book your schedule now! "
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="55dp"
+            android:padding="20dp"
+            android:background="@color/white">
+
+            <EditText
+                android:id="@+id/editTxtFullname"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_txt"
+                android:gravity="center"
+                android:hint="Full Name"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/editTxtContact"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_txt"
+                android:gravity="center"
+                android:hint="Contact"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/timePicker"
+                android:timePickerMode="spinner"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:hint="Set Time"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:drawableRight="@drawable/ic_access_time"/>
+
+            <EditText
+                android:id="@+id/datePicker"
+                style="?android:spinnerStyle"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:hint="Reserve Date"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:drawableRight="@drawable/ic_calendar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTxtFullname"
+                android:onClick="openDatePicker"/>
 
 
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp">
+
+            <Button
+                android:id="@+id/homebttn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bookbttn" />
+
+            <Button
+                android:id="@+id/bookbttn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Book Now"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="40dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

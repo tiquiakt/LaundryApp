@@ -100,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_txt"
                 android:gravity="center"
+                android:inputType="number"
                 android:textColorHint="@color/gray"
                 android:hint="Contact"
                 android:layout_marginLeft="5dp"

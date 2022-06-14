@@ -46,6 +46,8 @@ public class CustomerBooking extends AppCompatActivity {
         bookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),customer_dashboard.class));
+                finish();
                 Toast.makeText(CustomerBooking.this, "Reservation Complete", Toast.LENGTH_SHORT).show();
             }
         });
@@ -96,7 +98,15 @@ public class CustomerBooking extends AppCompatActivity {
                 {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                        timeButton.setText(hour+":"+min);
+                        if (hour>12){
+                            timeButton.setText(hour+":"+min + " " + "pm");
+                        }
+                        else if (hour == 12){
+                            timeButton.setText(hour+":"+min + " " + "pm");
+                        }
+                        else {
+                            timeButton.setText(hour+":"+min + " " + "am" );
+                        }
                     }
                 },hour,minute,false);
                 timePickerDialog.show();

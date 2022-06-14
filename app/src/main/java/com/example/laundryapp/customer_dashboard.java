@@ -65,8 +65,7 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
 
         name = findViewById(R.id.profile_fullname);
         userName = findViewById(R.id.profile_username);
-        usr_email = findViewById(R.id.editTextTextPersonEmail);
-        usrAddress = findViewById(R.id.editTextTextPersonAddress);
+
         booking = findViewById(R.id.button3);
         purchase = findViewById(R.id.button4);
         booking.setOnClickListener(this);
@@ -99,7 +98,7 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfile()).commit();
                 break;
             case R.id.bookHistory:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentBookingHstry()).commit();
+                startActivity(new Intent(getApplicationContext(),FragmentBookingHstry.class));
                 break;
             case R.id.message:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMessage()).commit();
@@ -126,33 +125,12 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button3){
-            checkField(usr_email);
-            checkField(usrAddress);
-
-            FirebaseUser user = fbAuth.getCurrentUser();
-            DocumentReference docRef = fbStore.collection("Reservation").document(user.getUid());
-            Map<String,Object> userInfo = new HashMap();
-            userInfo.put("email", usr_email.getText().toString());
-            userInfo.put("usrAddress", usrAddress.getText().toString());
-            userInfo.put("isCustomer", "1");
-            docRef.set(userInfo);
+            startActivity(new Intent(customer_dashboard.this, CustomerBooking.class));
+            Toast.makeText(this, "Proceeding", Toast.LENGTH_SHORT).show();
 
         }
         else if (view.getId() == R.id.button4){
             Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show();
         }
-    }
-    public boolean checkField(EditText textField){
-        if (textField.getText().toString().isEmpty()){
-            Toast.makeText(customer_dashboard.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-            textField.setError("Error");
-            valid = false;
-        }
-        else{
-            startActivity(new Intent(customer_dashboard.this, CustomerBooking.class));
-            Toast.makeText(this, "Proceeding", Toast.LENGTH_SHORT).show();
-            valid = true;
-        }
-        return valid;
     }
 }

@@ -60,24 +60,6 @@
             android:layout_marginTop="40dp"
             android:padding="20dp">
 
-            <EditText
-                android:id="@+id/editTextTextPersonEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:textColorHint="@color/gray"
-                android:inputType="textPersonName"
-                android:hint="Email" />
-
-            <EditText
-                android:id="@+id/editTextTextPersonAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:textColorHint="@color/gray"
-                android:inputType="textPersonName"
-                android:hint="Address" />
-
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"

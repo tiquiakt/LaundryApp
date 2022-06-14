@@ -10,24 +10,31 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class admin_dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-    TextView adminName, adminEmail;
+    TextView adminName, adminEmail, userName, userEmail, userAddress;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
     String userID;
@@ -49,6 +56,9 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
+        userName = findViewById(R.id.profileFullname);
+        userEmail = findViewById(R.id.emailTxt);
+        userAddress = findViewById(R.id.addressTxt);
 
         fbAuth = FirebaseAuth.getInstance();
         fbStore = FirebaseFirestore.getInstance();
@@ -65,7 +75,17 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
                 adminEmail.setText(value.getString("Email"));
             }
         });
-}
+        DocumentReference userRef = fbStore.collection("Customers").document(userID);
+        userRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                userName.setText(value.getString("Full Name"));
+                userEmail.setText(value.getString("Email"));
+                userAddress.setText(value.getString("FAddress"));
+            }
+        });
+
+    }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

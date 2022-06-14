@@ -28,7 +28,7 @@ import java.util.Map;
 public class CustomerBooking extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
-    private EditText name, contact,usr_email, usrAddress;;
+    private EditText name, contact;;
 
     private Button bookNow, bttnHome, dateButton, timeButton;
 
@@ -47,8 +47,6 @@ public class CustomerBooking extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbStore = FirebaseFirestore.getInstance();
 
-        usr_email = findViewById(R.id.editTextTextPersonEmail);
-        usrAddress = findViewById(R.id.editTextTextPersonAddress);
         name = findViewById(R.id.editTxtFullname);
         contact = findViewById(R.id.editTxtContact);
         timeButton = findViewById(R.id.timePicker);

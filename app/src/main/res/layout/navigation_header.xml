@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="labapp@info.com"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textStyle="bold|italic" />
 
 </LinearLayout>

@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,10 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    TextView adminName, adminEmail;
+    FirebaseAuth fbAuth;
+    FirebaseFirestore fbStore;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +49,28 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHome()).commit();
-            navView.setCheckedItem(R.id.admin_home);
-    }
+
+        fbAuth = FirebaseAuth.getInstance();
+        fbStore = FirebaseFirestore.getInstance();
+        userID = fbAuth.getCurrentUser().getUid();
+        DocumentReference docRef = fbStore.collection("Admin").document(userID);
+        docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                View header = navView.getHeaderView(0);
+                adminName = header.findViewById(R.id.admin_name);
+                adminName.setText(value.getString("Full Name"));
+
+                adminEmail = header.findViewById(R.id.admin_email);
+                adminEmail.setText(value.getString("Email"));
+            }
+        });
 }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.admin_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHome()).commit();
+                startActivity(new Intent(getApplicationContext(),admin_dashboard.class));
                 break;
 
             case R.id.logout:

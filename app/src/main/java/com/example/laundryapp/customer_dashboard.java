@@ -36,10 +36,12 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    TextView name, userName, useremail;
     EditText usr_email, usrAddress;
     Button booking, purchase;
     FirebaseAuth fbAuth;
     FirebaseFirestore fbStore;
+    String userID;
     boolean valid = true;
 
 
@@ -61,6 +63,8 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
+        name = findViewById(R.id.profile_fullname);
+        userName = findViewById(R.id.profile_username);
         usr_email = findViewById(R.id.editTextTextPersonEmail);
         usrAddress = findViewById(R.id.editTextTextPersonAddress);
         booking = findViewById(R.id.button3);
@@ -70,7 +74,19 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
 
         fbAuth = FirebaseAuth.getInstance();
         fbStore = FirebaseFirestore.getInstance();
+        userID = fbAuth.getCurrentUser().getUid();
+        DocumentReference docRef = fbStore.collection("Customers").document(userID);
+        docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                View header = navView.getHeaderView(0);
+                name.setText(value.getString("Full Name"));
+                userName.setText(value.getString("Username"));
 
+                useremail = header.findViewById(R.id.profile_email);
+                useremail.setText(value.getString("Email"));
+            }
+        });
     }
 
     @Override

@@ -29,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import javax.xml.parsers.DocumentBuilder;
 
-public class customer_dashboard<uid> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class customer_dashboard<uid> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -57,20 +57,16 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
 
         booking = findViewById(R.id.button3);
         purchase = findViewById(R.id.button4);
+        booking.setOnClickListener(this);
+        purchase.setOnClickListener(this);
 
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CustomHome()).commit();
-            navView.setCheckedItem(R.id.custom_home);
-
-        }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.custom_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CustomHome()).commit();
+                startActivity(new Intent(getApplicationContext(),customer_dashboard.class));
                 break;
             case R.id.profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfile()).commit();
@@ -98,5 +94,13 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.button3){
+            startActivity(new Intent(getApplicationContext(),CustomerBooking.class));
+            finish();
+        }
     }
 }

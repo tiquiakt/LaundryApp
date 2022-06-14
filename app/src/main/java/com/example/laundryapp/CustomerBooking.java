@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +13,17 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class CustomerBooking extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
-    private EditText dateButton, name, contact;
+    private EditText name, contact;
 
-    private Button bookNow, bttnHome;
+    private Button bookNow, bttnHome, dateButton, timeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +32,23 @@ public class CustomerBooking extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        name = findViewById(R.id.editTxtFullname);
+        contact = findViewById(R.id.editTxtContact);
+        timeButton = findViewById(R.id.timePicker);
+        dateButton = findViewById(R.id.datePicker);
+
+        bookNow = findViewById(R.id.bookbttn);
+        bttnHome = findViewById(R.id.homebttn);
+
         initDatePicker();
         dateButton.setText(getTodaysDate());
 
-        name = findViewById(R.id.editTxtFullname);
-        dateButton = findViewById(R.id.datePicker);
-
-
+        bookNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CustomerBooking.this, "Reservation Complete", Toast.LENGTH_SHORT).show();
+            }
+        });
         bttnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +82,26 @@ public class CustomerBooking extends AppCompatActivity {
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
 
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int hour, minute;
+
+                final Calendar c = Calendar.getInstance();
+                hour = c.get(Calendar.HOUR_OF_DAY);
+                minute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CustomerBooking.this, new TimePickerDialog.OnTimeSetListener()
+                {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int min) {
+                        timeButton.setText(hour+":"+min);
+                    }
+                },hour,minute,false);
+                timePickerDialog.show();
+            }
+        });
     }
     private String makeDateString(int day, int month, int year){
         return getMonthFormat(month) + " " + day + " " + year;
@@ -105,4 +138,5 @@ public class CustomerBooking extends AppCompatActivity {
 
         datePickerDialog.show();
     }
+
 }

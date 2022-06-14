@@ -27,14 +27,20 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.parsers.DocumentBuilder;
 
 public class customer_dashboard<uid> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-
+    EditText usr_email, usrAddress;
     Button booking, purchase;
+    FirebaseAuth fbAuth;
+    FirebaseFirestore fbStore;
+    boolean valid = true;
 
 
     @Override
@@ -55,10 +61,15 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
+        usr_email = findViewById(R.id.editTextTextPersonEmail);
+        usrAddress = findViewById(R.id.editTextTextPersonAddress);
         booking = findViewById(R.id.button3);
         purchase = findViewById(R.id.button4);
         booking.setOnClickListener(this);
         purchase.setOnClickListener(this);
+
+        fbAuth = FirebaseAuth.getInstance();
+        fbStore = FirebaseFirestore.getInstance();
 
     }
 
@@ -99,11 +110,32 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button3){
+            checkField(usr_email);
+            checkField(usrAddress);
+            //FirebaseUser user = fbAuth.getCurrentUser();
+            //DocumentReference docRef = fbStore.collection("Reservations").document(user.getUid());
+            //Map<String,Object> userInfo = new HashMap();
+            //userInfo.put("email", usr_email.getText().toString());
+            //userInfo.put("usrAddress", usrAddress.getText().toString());
+            //userInfo.put("isCustomer", "1");
+            //docRef.set(userInfo);
             startActivity(new Intent(customer_dashboard.this, CustomerBooking.class));
+
         }
         else if (view.getId() == R.id.button4){
             Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show();
         }
         Toast.makeText(this, "Welcome to your reservation process", Toast.LENGTH_SHORT).show();
+    }
+    public boolean checkField(EditText textField){
+        if (textField.getText().toString().isEmpty()){
+            Toast.makeText(customer_dashboard.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            textField.setError("Error");
+            valid = false;
+        }
+        else{
+            valid = true;
+        }
+        return valid;
     }
 }

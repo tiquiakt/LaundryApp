@@ -99,8 +99,11 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button3){
-            startActivity(new Intent(getApplicationContext(),CustomerBooking.class));
-            finish();
+            startActivity(new Intent(customer_dashboard.this, CustomerBooking.class));
         }
+        else if (view.getId() == R.id.button4){
+            Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show();
+        }
+        Toast.makeText(this, "Welcome to your reservation process", Toast.LENGTH_SHORT).show();
     }
 }

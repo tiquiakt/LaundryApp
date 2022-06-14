@@ -20,7 +20,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
             android:background="@drawable/splash_bg"
             android:padding="20dp">
 
@@ -29,6 +29,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/labapp_logo"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="130dp"
                 app:shapeAppearanceOverlay="@style/circular"/>
 
@@ -138,7 +139,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="25dp">
 
             <Button

@@ -112,20 +112,19 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
         if (view.getId() == R.id.button3){
             checkField(usr_email);
             checkField(usrAddress);
-            //FirebaseUser user = fbAuth.getCurrentUser();
-            //DocumentReference docRef = fbStore.collection("Reservations").document(user.getUid());
-            //Map<String,Object> userInfo = new HashMap();
-            //userInfo.put("email", usr_email.getText().toString());
-            //userInfo.put("usrAddress", usrAddress.getText().toString());
-            //userInfo.put("isCustomer", "1");
-            //docRef.set(userInfo);
-            startActivity(new Intent(customer_dashboard.this, CustomerBooking.class));
+
+            FirebaseUser user = fbAuth.getCurrentUser();
+            DocumentReference docRef = fbStore.collection("Reservation").document(user.getUid());
+            Map<String,Object> userInfo = new HashMap();
+            userInfo.put("email", usr_email.getText().toString());
+            userInfo.put("usrAddress", usrAddress.getText().toString());
+            userInfo.put("isCustomer", "1");
+            docRef.set(userInfo);
 
         }
         else if (view.getId() == R.id.button4){
             Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, "Welcome to your reservation process", Toast.LENGTH_SHORT).show();
     }
     public boolean checkField(EditText textField){
         if (textField.getText().toString().isEmpty()){
@@ -134,6 +133,8 @@ public class customer_dashboard<uid> extends AppCompatActivity implements Naviga
             valid = false;
         }
         else{
+            startActivity(new Intent(customer_dashboard.this, CustomerBooking.class));
+            Toast.makeText(this, "Proceeding", Toast.LENGTH_SHORT).show();
             valid = true;
         }
         return valid;

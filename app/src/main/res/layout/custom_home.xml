@@ -67,7 +67,7 @@
                 android:ems="10"
                 android:textColorHint="@color/gray"
                 android:inputType="textPersonName"
-                android:text="Email" />
+                android:hint="Email" />
 
             <EditText
                 android:id="@+id/editTextTextPersonAddress"
@@ -76,7 +76,7 @@
                 android:ems="10"
                 android:textColorHint="@color/gray"
                 android:inputType="textPersonName"
-                android:text="Address" />
+                android:hint="Address" />
 
             <Button
                 android:id="@+id/button3"

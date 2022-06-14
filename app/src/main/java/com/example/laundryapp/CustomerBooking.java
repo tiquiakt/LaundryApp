@@ -16,14 +16,26 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerBooking extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
-    private EditText name, contact;
+    private EditText name, contact,usr_email, usrAddress;;
 
     private Button bookNow, bttnHome, dateButton, timeButton;
+
+    FirebaseAuth fbAuth;
+    FirebaseFirestore fbStore;
+    boolean valid = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +44,11 @@ public class CustomerBooking extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fbAuth = FirebaseAuth.getInstance();
+        fbStore = FirebaseFirestore.getInstance();
+
+        usr_email = findViewById(R.id.editTextTextPersonEmail);
+        usrAddress = findViewById(R.id.editTextTextPersonAddress);
         name = findViewById(R.id.editTxtFullname);
         contact = findViewById(R.id.editTxtContact);
         timeButton = findViewById(R.id.timePicker);
@@ -43,12 +60,23 @@ public class CustomerBooking extends AppCompatActivity {
         initDatePicker();
         dateButton.setText(getTodaysDate());
 
+        Toast.makeText(this, "Welcome to your reservation process", Toast.LENGTH_SHORT).show();
+
         bookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),customer_dashboard.class));
-                finish();
-                Toast.makeText(CustomerBooking.this, "Reservation Complete", Toast.LENGTH_SHORT).show();
+                checkField(name);
+                checkField(contact);
+
+                FirebaseUser user = fbAuth.getCurrentUser();
+                DocumentReference docRef = fbStore.collection("Reservation").document(user.getUid());
+                Map<String,Object> userInfo = new HashMap();
+                userInfo.put("Full Name", name.getText().toString());
+                userInfo.put("Contact", contact.getText().toString());
+                userInfo.put("Time", timeButton.getText().toString());
+                userInfo.put("Date", dateButton.getText().toString());
+                userInfo.put("isCustomer", "1");
+                docRef.set(userInfo);
             }
         });
         bttnHome.setOnClickListener(new View.OnClickListener() {
@@ -148,5 +176,18 @@ public class CustomerBooking extends AppCompatActivity {
 
         datePickerDialog.show();
     }
-
+    public boolean checkField(EditText textField){
+        if (textField.getText().toString().isEmpty()){
+            Toast.makeText(CustomerBooking.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            textField.setError("Error");
+            valid = false;
+        }
+        else{
+            startActivity(new Intent(getApplicationContext(),customer_dashboard.class));
+            finish();
+            Toast.makeText(CustomerBooking.this, "Reservation Complete", Toast.LENGTH_SHORT).show();
+            valid = true;
+        }
+        return valid;
+    }
 }
